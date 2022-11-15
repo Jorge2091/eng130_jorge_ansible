@@ -1,0 +1,39 @@
+# Yaml file start
+---
+# create a script to configure nginx in our web server
+# who how is the host - means name of the server
+- hosts: db
+# gather data
+  gather_facts: yes
+# we need admin acces
+  become: true
+# add the actual instruction
+  tasks:
+  # add version do
+  # - name: add nodejs key
+  #   apt_key:
+  #     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+  #     state: present
+
+  # - name: add repo
+  #   apt_repository:
+  #     repo: deb https://deb.nodesource.com/node_12.x bionic main
+  #     update_cache: yes
+
+  # - name: add nodejs version 12
+  #   apt: pkg=nodejs state=present
+  - name: install nodejs
+    apt: pkg=nodejs state=present
+# we need to ensure at the end of this script the status of nginx is running
+  - name: copy app file to web
+    synchronize:
+      src: /home/vagrant/app
+      dest: /home/vagrant/
+  
+  - name: install npm
+    apt: pkg=npm state=present
+  
+  - name: install pm2
+    npm:
+      name: pm2
+      
