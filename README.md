@@ -30,3 +30,7 @@ we can automated this be going inside the hosts file
 19. now we can quickly connect to these servers/VM using the command `sudo ansible -m ping web` which if success, it will come back in green with a "pong"
 20. to run command inside other Vm without ssh, we run the command `sudo ansible web -a "command"` and the output will be shown in the controller output
 21. The power of ansible comes when we want to control multiple VMs, in ansible, we can control multiple commands to be set on other servers automatically without the need to ssh into them. by writing `sudo ansible all -a "sudo apt update"` we can run update on all the VM we have inside our /etc/ansible/**hosts** file
+22. copy files using the ad-hoc command `ansible atlanta -m ansible.builtin.copy -a "src=/etc/hosts dest=/tmp/hosts"`
+
+## What is ansible roles
+Ansible allows to make groups and inside groups, add automation, configuration, files, templates, tasks that they can inherit by groups
