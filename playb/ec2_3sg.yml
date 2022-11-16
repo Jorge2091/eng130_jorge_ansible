@@ -8,7 +8,7 @@
     key_name: my_aws
     region: eu-west-1
     image: ami-0a68e18ba7ccba285 # ami-0f93b5fd8f220e428 # https://cloud-images.ubuntu.com/locator/ec2/
-    id: "web-ap"
+    id: "web-apt"
     sec_group: "{{ id }}-sec"
 
   tasks:
@@ -42,21 +42,21 @@
           aws_access_key: "{{aws_access_key}}"
           aws_secret_key: "{{aws_secret_key}}"
 
-      - name: Create security group
-        ec2_group:
-          name: "{{ sec_group }}"
-          description: "Sec group for app {{ id }}"
-          # vpc_id: 12345
-          region: "{{ region }}"
-          aws_access_key: "{{aws_access_key}}"
-          aws_secret_key: "{{aws_secret_key}}"
-          rules:
-            - proto: tcp
-              ports:
-                - 22
-              cidr_ip: 0.0.0.0/0
-              rule_desc: allow all on ssh port
-        register: result_sec_group
+      # - name: Create security group
+      #   ec2_group:
+      #     name: "{{ sec_group }}"
+      #     description: "Sec group for app {{ id }}"
+      #     # vpc_id: 12345
+      #     region: "{{ region }}"
+      #     aws_access_key: "{{aws_access_key}}"
+      #     aws_secret_key: "{{aws_secret_key}}"
+      #     rules:
+      #       - proto: tcp
+      #         ports:
+      #           - 22
+      #         cidr_ip: 0.0.0.0/0
+      #         rule_desc: allow all on ssh port
+      #   register: result_sec_group
 
       - name: Provision instance(s)
         ec2:
@@ -64,7 +64,7 @@
           aws_secret_key: "{{aws_secret_key}}"
           key_name: "{{ key_name }}"
           id: "{{ id }}"
-          group_id: "{{ result_sec_group.group_id }}"
+          group_id: "sg-02c2c2c9a224da5c7"
           image: "{{ image }}"
           instance_type: t2.micro
           region: "{{ region }}"
