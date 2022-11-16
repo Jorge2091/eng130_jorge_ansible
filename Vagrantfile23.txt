@@ -16,8 +16,6 @@
         controller.vm.hostname = 'controller'
 
         controller.vm.network :private_network, ip: "192.168.33.12"
-        # sync a file
-        controller.vm.synced_folder "./playb", "/etc/ansible/"
 
         # config.hostsupdater.aliases = ["development.controller"] 
         controller.vm.provision "shell", path: "controller.sh"
@@ -34,8 +32,6 @@
         
         web.vm.network :private_network, ip: "192.168.33.10"
         #   assigning private IP
-        # sync a file
-        web.vm.synced_folder "./folderweb", "/home/vagrant/local/"
         
         #config.hostsupdater.aliases = ["development.web"]
         # creating a link called development.web so we can access web page with this link instread of an IP   
@@ -51,8 +47,7 @@
         db.vm.hostname = 'db'
         
         db.vm.network :private_network, ip: "192.168.33.11"
-        # sync a file
-        db.vm.synced_folder "./folderdb", "/home/vagrant/"
+        
         #config.hostsupdater.aliases = ["development.db"]
         db.vm.provision "shell", path: "db.sh"
         

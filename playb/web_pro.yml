@@ -13,17 +13,16 @@
 
 
 
-  - name: "Add nodejs 14.x ppa for apt repo"
+  - name: "Add nodejs 1x.x ppa for apt repo"
     apt_repository:
-      repo: deb https://deb.nodesource.com/node_12.x bionic main
+      repo: deb https://deb.nodesource.com/node_14.x bionic main
       update_cache: yes
-
-
 
   - name: Install/configure nodejs
     apt: pkg=nodejs state=present update_cache=yes
 
-
+  - name: install nginx
+    apt: pkg=nginx state=present
 
   - name: Install pm2
     npm:
@@ -35,10 +34,10 @@
       npm install -g npm@latest
       npm install mongoose -y
 
-  #- name: Copy web app into web virtual machine
-  #  synchronize:
-   #   src: /home/vagrant/app
-    #  dest: /home/vagrant
+  - name: Copy web app into web virtual machine
+    synchronize:
+      src: /home/vagrant/eng130_CICD_pipeline/app
+      dest: /home/vagrant
 
 
 
@@ -66,6 +65,6 @@
       pm2 start app.js
     environment:
 # This is where you enter the environment variable to tell the app where to look for the db
-      DB_HOST: mongodb://vagrant@192.168.33.11:27017/posts?authSource=admin
+      DB_HOST: mongodb://192.168.33.11:27017/posts?authSource=admin
     become_user: root
 

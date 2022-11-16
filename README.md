@@ -2,7 +2,8 @@
 Ansible Acts as a controller to other instances. Ansible is an automated engine that automates provisioning configuration management, application deployment and many other processes.
 Ansible can be installed on Red Hat Enterprise Linux, CentOS, or Fedora; Ubuntu; Debian making it really flexible.
 ## what is Iac
-Infrastructure as code (IaC) uses DevOps methodology and versioning with a descriptive model to define and deploy infrastructure, such as networks, virtual machines, load balancers, and connection topologies. Just as the same source code always generates the same binary, an IaC model generates the same environment every time it deploys.
+Infrastructure as code (IaC) uses DevOps methodology and versioning with a descriptive model to define and deploy infrastructure, such as networks, virtual machines, load balancers, and connection topologies. Just as the same source code always generates the same binary, an IaC model generates the same environment every time it deploys.</br>
+The benefits of Iac is that it can create instances with the correct modules and requirement it needs to run the softwares, this is similar to docker images or IMA images in aws.
 <img src="./images/ansible.png">
 ### Blue green deployment
 It used for upgrade or updates in applications. It is used when you don't want any downtime when deploying new features or updates to a server.
@@ -51,3 +52,17 @@ Ansible allows to make groups and inside groups, add automation, configuration, 
     apt: pkg=nginx state=present
 # we need to ensure at the end of this script the status of nginx is running
 ```
+
+## Hybrid ansible
+
+1. install python3 `sudo apt install python3`
+2. install pip `sudo apt install python3-pip`
+3. install awscli `pip3 install awscli`
+4. install boto3 `pip3 install boto boto3
+5. alias `alias python=python3`
+6. create folders in asible for pwd=`/etc/ansible/group_vars/all`
+7. create a vault for aws access_keys etc/ `sudo ansible-vault pass.yml`
+8. make it readable with `sudo chmod 666 pass.yml`
+9. make ec2 `sudo ansible-playbook ec2.yml --ask-vault-pass --tags create-ec2`
+10. inside the host add `[aws]` /n `ec2-instance ansible_host=ec2-ip ansible_user=ubuntu ansible_ssh_private_key_file~/.ssh/eng130.pem`
+11. also for python3 `[local]` /n ``
