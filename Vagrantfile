@@ -7,56 +7,57 @@
  
  # MULTI SERVER/VMs environment 
  #
- Vagrant.configure("2") do |config|
-    # creating are Ansible controller
-      config.vm.define "controller" do |controller|
+  Vagrant.configure("2") do |config|
+  # creating are Ansible controller
+    config.vm.define "controller" do |controller|
         
-        controller.vm.box = "bento/ubuntu-18.04"
+      controller.vm.box = "bento/ubuntu-18.04"
 
-        controller.vm.hostname = 'controller'
+      controller.vm.hostname = 'controller'
 
-        controller.vm.network :private_network, ip: "192.168.33.12"
-        # sync a file
-        controller.vm.synced_folder "./playb", "/etc/ansible/"
+      controller.vm.network :private_network, ip: "192.168.33.12"
+      # sync a file
+      controller.vm.synced_folder "./playb", "/etc/ansible/"
 
-        # config.hostsupdater.aliases = ["development.controller"] 
-        controller.vm.provision "shell", path: "controller.sh"
+      # config.hostsupdater.aliases = ["development.controller"] 
+      controller.vm.provision "shell", path: "controller.sh"
 
-        end 
+    end 
     # creating first VM called web  
-      config.vm.define "web" do |web|
+    config.vm.define "web" do |web|
         
-        web.vm.box = "bento/ubuntu-18.04"
-        # downloading ubuntu 18.04 image
+      web.vm.box = "bento/ubuntu-18.04"
+      # downloading ubuntu 18.04 image
 
-        web.vm.hostname = 'web'
-        # assigning host name to the VM
+      web.vm.hostname = 'web'
+      # assigning host name to the VM
         
-        web.vm.network :private_network, ip: "192.168.33.10"
-        #   assigning private IP
-        # sync a file
-        web.vm.synced_folder "./folderweb", "/home/vagrant/local/"
+      web.vm.network :private_network, ip: "192.168.33.10"
+      #   assigning private IP
+      # sync a file
+      web.vm.synced_folder "./folderweb", "/home/vagrant/local/"
         
-        #config.hostsupdater.aliases = ["development.web"]
-        # creating a link called development.web so we can access web page with this link instread of an IP   
-        web.vm.provision "shell", path: "web.sh"
+      #config.hostsupdater.aliases = ["development.web"]
+      # creating a link called development.web so we can access web page with this link instread of an IP   
+      web.vm.provision "shell", path: "web.sh"
         
-        end
+    end
       
     # creating second VM called db
-      config.vm.define "db" do |db|
+    config.vm.define "db" do |db|
         
-        db.vm.box = "bento/ubuntu-18.04"
+      db.vm.box = "bento/ubuntu-18.04"
         
-        db.vm.hostname = 'db'
+      db.vm.hostname = 'db'
         
-        db.vm.network :private_network, ip: "192.168.33.11"
-        # sync a file
-        db.vm.synced_folder "./folderdb", "/home/vagrant/"
-        #config.hostsupdater.aliases = ["development.db"]
-        db.vm.provision "shell", path: "db.sh"
+      db.vm.network :private_network, ip: "192.168.33.11"
+      # sync a file
+      db.vm.synced_folder "./folderdb", "/home/vagrant/local/"
+      
+      #config.hostsupdater.aliases = ["development.db"]
+      db.vm.provision "shell", path: "db.sh"
         
-        end
-    
-    
     end
+    
+    
+  end

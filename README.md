@@ -63,6 +63,10 @@ Ansible allows to make groups and inside groups, add automation, configuration, 
 6. create folders in asible for pwd=`/etc/ansible/group_vars/all`
 7. create a vault for aws access_keys etc/ `sudo ansible-vault pass.yml`
 8. make it readable with `sudo chmod 666 pass.yml`
-9. make ec2 `sudo ansible-playbook ec2.yml --ask-vault-pass --tags create-ec2`
-10. inside the host add `[aws]` /n `ec2-instance ansible_host=ec2-ip ansible_user=ubuntu ansible_ssh_private_key_file~/.ssh/eng130.pem`
-11. also for python3 `[local]` /n ``
+9. make a `eng130.pub` and `eng130` using `ssh-keygen -t rsa -b 4096 -f ~/.ssh/eng130` and make it private with `sudo chmod 600 ~/.ssh/eng130.pem` only if you get a "private key too accessible"
+10. make ec2 `sudo ansible-playbook ec2.yml --ask-vault-pass --tags create-ec2`
+11. inside the host add `[aws]` /n `ec2-instance ansible_host=ec2-ip ansible_user=ubuntu ansible_ssh_private_key_file~/.ssh/eng130.pem`
+12. also for python3 `[local]` /n `localhost ansible_python_interpreter=/usr/bin/python3`
+
+# IaC Orchestration with Terraform
+founder by Do Kwon, owner and CEO of terraform open source, Terraform is an IAC tool that can automated various infrastructure written in the Go language. it allows you to describe your complete infrastructure in the form of code, with any cloud providers and be utilized by any of them. One of the main causes for terraform is for public cloud provisioning. Another use case is for facilitate multi-cloud deployment. In general, Terraform helps manage your entire IT ecosystem via IaC, whether it’s a single cloud, multi-cloud, or custom deployment.

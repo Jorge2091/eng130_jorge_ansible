@@ -1,2 +1,6 @@
 .vagrant/
 playb/group_vars/
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup

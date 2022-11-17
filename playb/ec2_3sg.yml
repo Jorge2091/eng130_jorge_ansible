@@ -7,8 +7,8 @@
   vars:
     key_name: my_aws
     region: eu-west-1
-    image: ami-0a68e18ba7ccba285 # ami-0f93b5fd8f220e428 # https://cloud-images.ubuntu.com/locator/ec2/
-    id: "web-apt"
+    image: ami-0f797bfe30d1b638d # ami-0f93b5fd8f220e428 # https://cloud-images.ubuntu.com/locator/ec2/
+    id: "mongo"
     sec_group: "{{ id }}-sec"
 
   tasks:
@@ -64,7 +64,7 @@
           aws_secret_key: "{{aws_secret_key}}"
           key_name: "{{ key_name }}"
           id: "{{ id }}"
-          group_id: "sg-02c2c2c9a224da5c7"
+          group_id: "sg-0f426bc6397b36796"
           image: "{{ image }}"
           instance_type: t2.micro
           region: "{{ region }}"
@@ -74,6 +74,6 @@
           # count_tag:
           #   Name: App
           instance_tags:
-            Name: App
+            Name: eng130_jorge_mongo_ansible
 
       tags: ['never', 'create_ec2']

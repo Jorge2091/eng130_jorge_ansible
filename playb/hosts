@@ -18,7 +18,10 @@
 localhost ansible_python_interpreter=/usr/bin/python3
 
 [aws]
-ec2-instance ansible_host=ec2-ip ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/eng130.pem
+ec2-instance ansible_host=ubuntu@ec2-34-240-66-17.eu-west-1.compute.amazonaws.com ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/eng130.pem
+
+[awsdb]
+ec2-instance ansible_host=ubuntu@ec2-34-242-73-5.eu-west-1.compute.amazonaws.com ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/eng130.pem
 
 # Ex
 ## [webservers]
