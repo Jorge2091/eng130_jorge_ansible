@@ -70,3 +70,5 @@ Ansible allows to make groups and inside groups, add automation, configuration, 
 
 # IaC Orchestration with Terraform
 founder by Do Kwon, owner and CEO of terraform open source, Terraform is an IAC tool that can automated various infrastructure written in the Go language. it allows you to describe your complete infrastructure in the form of code, with any cloud providers and be utilized by any of them. One of the main causes for terraform is for public cloud provisioning. Another use case is for facilitate multi-cloud deployment. In general, Terraform helps manage your entire IT ecosystem via IaC, whether it’s a single cloud, multi-cloud, or custom deployment.
+# connection from localhost to aws and creating a VPC using terraform script
+<img src="./images/terra-vpc.png" />

@@ -4,3 +4,4 @@ playb/group_vars/
 .terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
+variable.tf
