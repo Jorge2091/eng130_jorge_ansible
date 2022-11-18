@@ -72,3 +72,11 @@ Ansible allows to make groups and inside groups, add automation, configuration, 
 founder by Do Kwon, owner and CEO of terraform open source, Terraform is an IAC tool that can automated various infrastructure written in the Go language. it allows you to describe your complete infrastructure in the form of code, with any cloud providers and be utilized by any of them. One of the main causes for terraform is for public cloud provisioning. Another use case is for facilitate multi-cloud deployment. In general, Terraform helps manage your entire IT ecosystem via IaC, whether it’s a single cloud, multi-cloud, or custom deployment.
 # connection from localhost to aws and creating a VPC using terraform script
 <img src="./images/terra.jpg" />
+
+### structure
+controller in aws
+1. create a autoscaling group with terraform, also include load balancer and cloud watch with alert notification.
+2. attach a load balancer
+3. activate cloud watch and all 3 steps using terraform
+4. onces finish, add a new instance with the controller being ANSIBLE, and make it controller and configure all other instances inside
+<img src="./images/terra&ansible.png"/>
